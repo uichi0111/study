@@ -2,6 +2,29 @@
 
 $dataFile = "/Applications/XAMPP/xamppfiles/htdocs/bbs/bbs.text";
 
+//CSRF対策
+//流れとしてはまず投稿する前にトークンをセットして
+//そのトークンを投稿された後に調べる
+session_start();
+
+//トークンをセッションにセット
+function setToken()
+	{
+	$token = sha1(uniqid(mt_rand(), true));
+	$_SESSION['token'] = $token;
+	}
+//トークンをセッションから取得
+function checkToken()
+	{
+	//セッションが空か生成したトークンと異なるトークンでPOSTされた場合は不正
+	if (empty($_SESSION['token']) || ($_SESSION['token'] != $_POST['token'])){
+		echo "不正な投稿が行われました。";
+		exit;
+		}	
+	}
+
+
+
 
 
 //表示するときのエスケープ関数を作る
@@ -21,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&//$_SERVER['REQUEST_METHOD']でPOST�
 	isset($_POST["message"])&& //メッセージがセットされているか判別して
 	isset($_POST["user"]))	   //ユーザーがセットされている判別する
 	{
-		$message = $_POST['message'];
-		$user = $_POST['user'];
-	
+		//投稿されたトークンをチェックする
+		checkToken();
+			
 		//前後の空白をトリミングする
 		$message = trim($_POST['message']);
 		$user = trim($_POST['user']);
@@ -37,15 +60,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&//$_SERVER['REQUEST_METHOD']でPOST�
 			//送信されたデータにタブが含まれていたら半角空白に置き換える
 			$message = str_replace("\t", ' ', $message);
 			$user = str_replace("\t", ' ', $user);
-		}
-		//日付年月日の作成
-		$postedAt = date('Y-m-d H:i:s');
+			//日付年月日の作成
+			$postedAt = date('Y-m-d H:i:s');
 		
-		$newData = $message . "\t" . $user . "\t" .$postedAt."\n"; //"\t"=タブ,"\n"=改行
-		$fp = fopen($dataFile, 'a');//'a'書き出し用のみでオープン。ファイルポインタをファイルの終端に置く。 ファイルが存在しない場合には、作成を試みる
-		fwrite($fp, $newData);
-		fclose($fp);
-		
+			$newData = $message . "\t" . $user . "\t" .$postedAt."\n"; //"\t"=タブ,"\n"=改行
+			
+			$fp = fopen($dataFile, 'a');//'a'書き出し用のみでオープン。ファイルポインタをファイルの終端に置く。 ファイルが存在しない場合には、作成を試みる
+			fwrite($fp, $newData);
+			fclose($fp);
+		 }
+	}else{
+		//投稿する前にトークンをセットする
+		setToken();		
 }
 	
 //file関数で中身を一行ずつ取り出し配列に入れる
@@ -67,6 +93,8 @@ $posts = array_reverse($posts);//投稿順に表示させたいので配列を�
 		message: <input type="text" name="message">
 		user: <input type="text" name="user">
 		<input type="submit" value="送信">
+		<!--セットしたトークンをhidden項目として仕込む-->
+		<input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
 	</form>
 	<h2>投稿一覧(<?php echo count($posts) ; ?>件)</h2>
 	
