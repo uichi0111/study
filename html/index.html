@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang = "ja">
+    <head>
+        <meta charset = "utf-8">
+        <title>初めてのhtml</title>
+        <meta name = "description" content = "初めてのHTML文書です。">
+        <style>
+        </style>
+        <link rel = "stylesheet" href = "mystyle.css">
+        <link rel = "shrotcut icon" href = "favicon.ico">
+
+    </head>
+    <body>
+    <form action="survey.php" method = "post">
+        <p>名前 : <input type = "text" name = "name"></p>
+        <p>メモ :<textarea name="memo"></textarea></p>
+        <p>パスワード : <input type = "password" name = "password" required></p>
+        <p><input type = "hidden" name = "user_id" value ="2"></p>
+        <p>日付 : <input type = "date" name = "birthday"></p>
+        <p>URL : <input type="url" name="url" ></p>
+        <p>email: <input type="email" name="email" ></p>
+
+
+
+        <select name = "color">
+        <option value = "red">red</option>
+        <option value = "blue">blue</option>
+        <option value = "green">green</option>
+        </select>
+
+
+
+        <p><input type = "submit" value = "送信"></p>
+
+
+
+    </form>
+    <!--
+        実体参照
+        style属性
+        script
+    -->
+    <p>これは&lt;p&gt;です</p>
+    <p style = " color:red;">こんにちは</p>
+    <script src = "myscript.js"></script>  <!--読み込んでいる間はページの読み込みが止まるのでbodyタグの最後に書くのが一般的
+
+
+
+
+
+
+
+
+
+
+    <!--
+    スタイリング
+    div　    汎用ブロック要素（前後に改行が入る）
+    span    汎用インライン要素（前後に改行がはいらない
+
+    id          その文章に一つだけの要素
+    class　 複数あってもいい
+
+    構造的
+    header
+    footer
+    nav
+    article
+    aside
+    section
+    -->
+    <header>
+        <h1>企業日記</h1>
+        <nav>
+            home
+            profile
+        </nav>
+    </header>
+
+    <article>
+        <h2>リリース完了</h2>
+        <p>嬉しい</p>
+    </article>
+
+    <aside>
+        <h3>このサイトについて</h3>
+    </aside>
+
+    <footer>
+        copyright 2015@＊＊＊＊＊＊＊
+    </footer>
+
+
+
+    <div id = "main">
+    <p>こんにちは</p>
+    <p>こんにちは<span class = "notice">こんにちは</span></p>
+    </div>
+
+
+    <!--
+    tr::::::::table row(行)
+    th:::::::table header(見出し)
+    td:::::::table data(実際のデータ)
+    -->
+        <table>
+            <thead>
+                <tr><th>name</th><th>2010</th><th>2011</th></tr>
+            </thead>
+                <tr><td>@ikeuchi</td><td>100</td><td>150</td></tr>
+                <tr><td>@yuichi</td><td>150</td><td>200</td></tr>
+            <tbody>
+            </tbody>
+        </table>
+
+
+
+
+
+    <ul><!--unorderd list-->
+        <li>apple</li><!--list item-->
+        <li>banana</li>
+    </ul>
+    <ol><!--orderd list-->
+        <li>apple</li>
+        <li>banana</li>
+    </ol>
+
+        <!-- コメント-->
+        <h1>大見出し</h1>
+        <h2>中見出し</h2>
+        <h3>小見出し</h3>
+        <p>こんにちは！<br>こんにちは！</p>
+        <p><a href = "http://google.com" >こんにちは！</a></p>
+        <p><a href = "http://google.com" target = "_blank">google</a></p>
+        <p><a href = "hello.html" >Hello</a></p>
+
+        <p><a href = "#hello2">Hello2</a></p><!--ページ内リンク-->
+        <hr>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+        <p id = "hello2">hello2</p>
+        <p>こんにちは！</p>
+        <p>こんにちは！</p>
+
+
+
+        <p>こんにちは！</p>
+        <p><strong>こんにちは！</strong></p>
+    </body>
+</html>
