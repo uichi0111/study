@@ -1,0 +1,94 @@
+＊テーブルを作るコマンド
+
+create table users(
+    id int not null auto_increment primary key,
+    name varchar(255),
+    email varchar(255) unique,
+    password char(32),
+    score double,
+    sex enum('male', 'female') default 'male',
+    memo text,
+    created datetime,
+    key score (score)
+);
+
+＊レコードの挿入
+insert into users (name, email, password, score,memo, created) values ('ikeuchi','aaa@gmail.com','ssss','5.5','memomemo','2015-02-09 04:00:00');
+
+
+＊レコードの更新
+update テーブル名 set フィールド名 = 数値 where id = ○○；
+＊レコードの削除
+delete from テーブル名 where フィールド名 <= 数値；
+
+＊テーブルの構造の変更
+alter table users add full_name varchar(255) after name;
+alter table users change full_name varchar(100);
+alter table users drop full_name;(削除)
+alter table users add index email (email);(インデックスの追加)
+alter table users drop index email;(インデックスの削除)
+alter table users rename blog_users;(テーブル名の変更)
+
+＊レコードを見る
+- select * from users;
+- select * from users \G(縦に表示)
+- select * from users where score >= 5.5;（条件を指定　=,!=or<>,文字列,日付）
+- select * from users where email like'%@gmail.com';(or_)
+- select * from users where score between 5.0 and 8.0
+- select * from users where team in ('red,'yellow');
+
+*並び替え
+- select * from users order by score;（小さい順に並べる）
+- select * from users order by score desc;(小さい順から並べてそれを逆転＝大きい順)
+- select * from users limit 3;(上位を検索)
+- select * from users limit 2,2(限定する。2つ目から二件)
+
+＊集計する
+- select count(*) from users;
+- select distinct team from users;(ユニークな値を抽出)
+- select max(score) from users;
+- select avg(score) from users;
+- select sum(score) from users;
+- select avg(score) from users group by team;
+- select rand();
+
+＊文字数、日付関数
+- length(文字列)
+- concat(文字列の連結)
+- as laber
+- substring( , )
+- now()
+- month
+- datediff(日付の差分を現在と比べる)
+
+
+＊数値
+- int
+- double
+
+＊文字列
+- char (予め長さが決まってる)
+- varchar（長さが決まってない）
+- text
+
+＊日付
+- date
+- datetime
+
+＊それ以外
+- enum
+
+＊入力を必須
+not null
+＊デフォルト値
+＊自動連番
+auto_increment(数値のみ)
+
+＊索引（インデックス）
+- 主キー   primary key（レコードを一意に特定する
+- キー     key
+- ユニークキー unique（重複した値が入ってくると弾く
+
+
+＊テーブルの構造を見る
+- desk
