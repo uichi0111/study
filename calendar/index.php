@@ -1,16 +1,34 @@
 <?php
 //今月のcalendar
+//エスケープ処理
+function h($s) {
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+}
 
-$timeStanp = time();
+
+//timeStamp
+$ym = isset($_GET['ym']) ? $_GET['ym'] : date("Y-m");
+
+$timeStamp = strtotime($ym . "-01");
+
+if ($timeStamp === false){
+    $timeStamp = time();
+}
+
+
+//前月,翌月
+
+$prev = date("Y-m", mktime(0,0,0,date("m",$timeStamp)-1,1,date("y",$timeStamp)));
+$next = date("Y-m", mktime(0,0,0,date("m",$timeStamp)+1,1,date("y",$timeStamp)));
 
 //最終日？
 
-$lastDay = date("t",$timeStanp);
+$lastDay = date("t", $timeStamp);
 
 //１日は何曜日？
 //0: sum......6: sat
 
-$youbi = date("w", mktime(0,0,0,date("m",$timeStanp),1,date("y",$timeStanp)));
+$youbi = date("w", mktime(0,0,0,date("m",$timeStamp),1,date("y",$timeStamp)));
 
 //var_dump($lastDay);
 //var_dump($youbi);
@@ -31,29 +49,7 @@ for ($day = 1; $day <= $lastDay; $day++, $youbi++) {
         $weeks[] = '<tr>' . $week . '</tr>';
         $week = '';
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
 
@@ -69,9 +65,9 @@ for ($day = 1; $day <= $lastDay; $day++, $youbi++) {
     <table>
         <thead>
             <tr>
-                <th><a href="">&laquo;</a></th>
-                <th colspan="5">2015-02</th>
-                <th><a href="">&raquo;</a></th>
+                <th><a href="?ym=<?php echo h($prev); ?>">&laquo;</a></th>
+                <th colspan="5"><?php echo h(date("Y" , $timeStamp). "-". date("m", $timeStamp)); ?></th>
+                <th><a href="?ym=<?php echo h($next); ?>">&raquo;</a></th>
             </tr>
             <tr>
                 <th>日</th>
