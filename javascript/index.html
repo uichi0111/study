@@ -8,17 +8,35 @@
 
 <script>
     /*
-     if文
+     真偽値と三項演算子
+    */
+    /*
+        真偽値
+            文字列：空文字以外だったらtrue
+            数値：０かNaN以外だったらtrue
+            true　/　false
+            object：null以外だったらtrue
+            undefined,null -> false
+    */
+    if (x) {
+        //処理
+    }
+    if (x !== ''){
+        //処理
+    }
+
+    /*三項演算子
+        a = (条件) ? b : c
     */
 
-    var score = 50;
-    if(score > 60) {
-        console.log("ok!");
-    }else if (score > 40){
-        console.log ("soso...");
-    }else{
-        console.log("NG!");
-    }
+    var max, x, y;
+    max = (x > y) ? x : y;
+
+
+
+
+
+
 
 </script>
 
