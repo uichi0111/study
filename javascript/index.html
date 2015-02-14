@@ -7,31 +7,29 @@
 <body>
 
 <script>
-    /*
-     真偽値と三項演算子
+    /* switch文
+
+
     */
-    /*
-        真偽値
-            文字列：空文字以外だったらtrue
-            数値：０かNaN以外だったらtrue
-            true　/　false
-            object：null以外だったらtrue
-            undefined,null -> false
-    */
-    if (x) {
-        //処理
+
+    var signal = "red";
+
+    switch (signal) {
+        case "red":
+            console.log("stop");
+            break;
+        case "green":
+        case "blue":
+            console.log("go");
+            break;
+        case "yellow":
+            console.log("slow down");
+            break;
+        default:
+            console.log("warong singal");
+            break;
+
     }
-    if (x !== ''){
-        //処理
-    }
-
-    /*三項演算子
-        a = (条件) ? b : c
-    */
-
-    var max, x, y;
-    max = (x > y) ? x : y;
-
 
 
 
