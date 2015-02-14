@@ -9,23 +9,18 @@
 <script>
     /*
         ループ処理
-        while
-        do...while
+        for文
+
+        break　ループ処理を抜ける
+        continue　ループ処理を一回スキップ
 
     */
-    //先判定
-    var i = 0;
-    while (i < 10){
+    for (var i = 0; i <10 ;i++){
+        if (i === 5) {
+            continue;
+        }
         console.log(i);
-        i++;
     }
-
-    //後判定
-    var ii = 200;
-    do {
-        console.log(ii);
-    }while(ii <10);
-
 
 </script>
 
