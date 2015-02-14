@@ -1,10 +1,5 @@
 <?php
 
-
-
-
-
-
 require_once('calendar.php');
 
 
