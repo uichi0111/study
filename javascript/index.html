@@ -7,33 +7,24 @@
 <body>
 
 <script>
-    /* switch文
-
+    /*
+        ループ処理
+        while
+        do...while
 
     */
-
-    var signal = "red";
-
-    switch (signal) {
-        case "red":
-            console.log("stop");
-            break;
-        case "green":
-        case "blue":
-            console.log("go");
-            break;
-        case "yellow":
-            console.log("slow down");
-            break;
-        default:
-            console.log("warong singal");
-            break;
-
+    //先判定
+    var i = 0;
+    while (i < 10){
+        console.log(i);
+        i++;
     }
 
-
-
-
+    //後判定
+    var ii = 200;
+    do {
+        console.log(ii);
+    }while(ii <10);
 
 
 </script>
