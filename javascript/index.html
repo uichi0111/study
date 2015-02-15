@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="jp">
 <head>
-    <meta charset="utf-8">;
+    <meta charset="utf-8">
     <title>javascript練習</title>
 </head>
 <body>
 
 <script>
     /*
-        alert
-        confirm true/false
-        prompt  true/null
+        関数：複数の処理
+
+        function 関数名(引数) {
+            処理
+            return 返り値
+        }
+
+    function hello(name) {
+        var msg = "hello" + name; //ローカル関数
+        return msg;
+    }
 
     */
 
-/*        alert("hello");
-        var answer = confirm("are you sure?");
-        console.log(answer);
-
-        if (confirm(”本当に削除しますか?)){
-            //削除処理
-        }
-*/
-        var name = prompt("お名前は？","nanasi");
-        console.log(name);
-
-
-
+    var hello = function (name) { //無名関数、匿名関数
+        var msg = "hello" + name; //ローカル関数
+        return msg;
+    };
+    var greet = hello("tom");
+    console.log(greet);
+    //console.log(msg);
 
 
 </script>
