@@ -8,38 +8,19 @@
 
 <script>
     /*
-        タイマー処理
-            setInterval 前の処理が終わったかどうかを考慮しない
-            setTimeout  前の処理が終わったかどうかを考慮する
+        配列・・・グループ化されたデータ
     */
-    /*    var i = 0;
-        function show() {
-            console.log(i++);
-        }
-        setInterval(function() {
-            show();
-        },1000); //1000ミリ秒ごとに繰り返す
-    */
-    /*    var i = 0;
-        function show() {
-            console.log(i++);
-        }
-        setTimeout(function() {
-            show();
-        }, 1000); //1000ミリ秒後に一回だけ動作する
-    */
-        var i = 0;
-        function show() {
-            console.log(i++);
-            var tid = setTimeout(function() {
-                show()
-           },1000);
-            if (i > 3){
-                clearTimeout(tid);
-            }
-        }
-        show();
 
+    var score = [100, 200, 300, "Hello"];
+    console.log(score[0]);
+    score[2] = 5000;
+    console.log(score);
+
+    var m = [
+        [1, 2, 3],
+        [4, 5, 6]
+    ]
+    console.log(m[1][2]);
 </script>
 
 
