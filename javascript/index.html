@@ -8,27 +8,25 @@
 
 <script>
     /*
-        関数：複数の処理
-
-        function 関数名(引数) {
-            処理
-            return 返り値
-        }
-
-    function hello(name) {
-        var msg = "hello" + name; //ローカル関数
-        return msg;
-    }
-
+        即時関数
     */
 
-    var hello = function (name) { //無名関数、匿名関数
-        var msg = "hello" + name; //ローカル関数
-        return msg;
-    };
-    var greet = hello("tom");
-    console.log(greet);
-    //console.log(msg);
+    (function hello(name){
+        console.log("hello " + name);
+    })("tom");
+
+//関数名は省略可能
+    (function (name){
+        console.log("hello " + name);
+    })("tom");
+
+
+//ローカル変数にすることで安全に実行できるようにすることもある
+    (function() {
+        var x = 10;
+            y = 20;
+        console.log(x + y);
+    })();
 
 
 </script>
