@@ -8,26 +8,37 @@
 
 <script>
     /*
-        即時関数
+        タイマー処理
+            setInterval 前の処理が終わったかどうかを考慮しない
+            setTimeout  前の処理が終わったかどうかを考慮する
     */
-
-    (function hello(name){
-        console.log("hello " + name);
-    })("tom");
-
-//関数名は省略可能
-    (function (name){
-        console.log("hello " + name);
-    })("tom");
-
-
-//ローカル変数にすることで安全に実行できるようにすることもある
-    (function() {
-        var x = 10;
-            y = 20;
-        console.log(x + y);
-    })();
-
+    /*    var i = 0;
+        function show() {
+            console.log(i++);
+        }
+        setInterval(function() {
+            show();
+        },1000); //1000ミリ秒ごとに繰り返す
+    */
+    /*    var i = 0;
+        function show() {
+            console.log(i++);
+        }
+        setTimeout(function() {
+            show();
+        }, 1000); //1000ミリ秒後に一回だけ動作する
+    */
+        var i = 0;
+        function show() {
+            console.log(i++);
+            var tid = setTimeout(function() {
+                show()
+           },1000);
+            if (i > 3){
+                clearTimeout(tid);
+            }
+        }
+        show();
 
 </script>
 
