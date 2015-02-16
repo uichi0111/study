@@ -2,60 +2,60 @@
 <html lang="jp">
 <head>
     <meta charset="utf-8">
-    <title>javascript練習</title>
+    <title>Javascript練習</title>
+    <style>
+        .myStyle {
+            font-weight: bold;
+            border: 1px solid gray;
+        }
+    </style>
 </head>
 <body>
+    <h1>見出し</h1>
+    <p id="msg">こんにちは！</p>
+    <button id="add">Click!</button>
+
+
+
+
+
+
 
 <script>
     /*
-        組み込みオブジェクト
+        //console.dir(window);オブジェクトのプロパティを表示
 
-        -String
-        -Array
-        -Math
-        -Date
+        //console.log(window.outerHeight);
+        //window.location.href = 'http://google.com';  現在のページを別のページに飛ばす
 
+
+        //window.document -今開いているページ
+        //(window.)document - windowは省略可能
+
+        //document object model (DOM)
+    */
+    var e = document.getElementById('msg');//要素のidを取得して変数に格納
+    e.textContent = 'Hello';//テキストの書き換え
+    e.style.color = 'red';//色の変更
+    e.className = 'myStyle';//クラスの適用
+
+    /*
+        body
+            p
+                text
+    */
+   /* var greet = document.createElement('p');//エレメントの作成
+        text  = document.createTextNode('Hello world');//テキストの作成
+    document.body.appendChild(greet).appendChild(text);//appendChildで子要素として追加する
     */
 
 
-        var s  = new String("ikeuchi"); //
-        var s = "ikeuchi"; //文字列リテラル(javascriptが変換してくれている)
-        console.log(s. length); //文字列を返す
-        console.log(s.replace("i", "T")); //文字を置換する
-        console.log(s.substr(1,3)); //部分文字列を返す
-
-        var a = new Array(100, 200, 300);
-        //var a = [100, 200, 300]; //リテラル
-        console.log(a.length);//要素の個数を返す
-        //unshift -> array <- push
-        //unshift--先頭に追加する
-        //push--末尾に追加する
-        //shift -> array <- pop
-        //shift--先頭を除去する
-        //pop--末尾を除去する
-        //splice--途中に追加する(第一引数(どこに),第二引数(要素の数))
-        a.push(500);//要素を末尾に追加する
-        console.log(a);
-        //a.splice(1, 2);//一つ目から二つ分削除
-        console.log(a);
-        a.splice(1, 2, 400, 800);
-        console.log(a);
-
-
-        console.log(Math.PI);
-        console.log(Math.ceil(5.3));//切り上げ
-        console.log(Math.floor(5.3));//切り捨て
-        console.log(Math.round(5.3));//四捨五入
-        console.log(Math.random());//0~1未満の実数をランダムで生成
-
-        var d = new Date();//現在時刻のオブジェクトを取得
-        //特定日付を取得したい場合は年月日を指定
-        //var d = new Date(2015, 1, 16, 05, 35, 11); //Javascriptでは月は0から始まることに注意
-        console.log(d.getFullYear());
-        console.log(d.getMonth());
-        console.log(d.getTime()); //1970/01/01からの経過ミリ秒
-
-
+    //addEventlistener・・・イベントを紐付ける
+    document.getElementById('add').addEventListener('click',function() {
+        var greet = document.createElement('p');//エレメントの作成
+            text  = document.createTextNode('Hello world');//テキストの作成
+        document.body.appendChild(greet).appendChild(text);//appendChildで子要素として追加する
+    });
 
 </script>
 
