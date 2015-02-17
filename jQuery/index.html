@@ -15,6 +15,7 @@
     <p><a href="http://google.com" data-sitename="google">google</a></p>
     <p><a href="http://yahoo.co.jp">yahoo</a></p>
     <p><a href="http://amazon.co.jp">amazon</a></p>
+    <input tyep="text" value="hello">
 
     <ul id="main">
         <li>0</li>
@@ -44,22 +45,21 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                attr
-                引数に属性名を指定することで属性の値を取得
-                また第２引数に値を設定することで属性の値を設定
-
-                data
-                指定した要素にデータ（プロパティ名と値）を設定
-                引数にプロパティだけ指定すると、jQueryオブジェクトで指定した要素に設定されたプロパティの値を取得
+              //text・・・テキストの書き換え
+              //html・・・htmlの書き換え
+              //val・・・値の書き換え
+              //remove, empty・・・指定要素の取り除き、空にする
             */
-            //attrメソッド
-                console.log($('a').attr('href'));
-                $('a').attr('href', 'http://google.co.jp');
-            //dataメソッド
-                console.log($('a').data('sitename'));
+                //$('a').text('just changed');
+                //$('a').html('<a href="">click me!</a>');
+                //console.log($('input').val());
+                //$('input').val('hello, again!');
+                //$('a').remove();
+                $('a').empty();
 
 
-        });
+        })
+
     </script>
 </body>
 </html>
