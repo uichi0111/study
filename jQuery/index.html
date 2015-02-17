@@ -34,15 +34,39 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                > 直下の子要素
-                 (空白) それ以下の要素
-                , 複数の要素
-                + 隣接する要素
+                フィルタ
+                    // :eq()
+                    // :gt(), :lt()
+                    // :even, :odd
+                    // :contains()
+                    // :first, :last
+
             */
-            //$("#main > .item").css('color','red');メインの下のクラスのアイテム要素を指定
-            //$("#main .item").css('color','blue');それ以下の要素を指定するときは空白
-            //$("p , .item").css('color','red');複数の要素を指定
-            $(".item + .item").css('color','blue');//隣接する要素を指定
+
+
+            //リストの2番目と等しい物を指定
+            //$("#sub > li:eq(2)").css('color','green');
+            //リスト要素の3番目より大きい物を指定
+            //$("#sub > li:gt(3)").css('color','yellow');
+            //奇数要素を指定
+            $("#sub > li:odd").css('color','brown');
+            //偶数要素を指定
+            $("#sub > li:even").css('color','pink');
+            //中身に含まれているもので指定
+            $("#sub > li:contains('4')").css('color','orange');
+
+            //
+            //
+
+
+
+
+
+
+
+
+
+
 
         });
     </script>
