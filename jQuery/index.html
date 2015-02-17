@@ -3,6 +3,12 @@
 <head>
     <meta  charset = "utf-8">
     <title>jQueryの練習</title>
+    <style>
+        .myStyle {
+            border:5px solid green;
+            font-size:48px;
+        }
+    </style>
 </head>
 <body>
     <p>jQeryの練習</p>
@@ -38,24 +44,17 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                属性セレクタ
-                =  等しい物
-                != 等しくないもの
-                *= 含まれるもの
-                ^= 先頭がはじまるもの
-                $= で終わるもの
+                CSSの設定、取得
             */
 
-            //$('a[href="http://google.com"]').css('background','red');
-            //$('a[href!="http://google.com"]').css('background','blue');
-            //$('a[href*="amazon"]').css('background','green');
-            //$('a[href$="jp"]').css('background','yellow');
-            $('a[href^="http"]').css('background','blue');
 
+            //$('p').css('color','red').css('background','blue');
+            //値を書かなかった場合は値を取得できる
+            //console.log($('p').css('color'));
 
-
-
-
+            //addClass removeClass
+                //
+            $('p').addClass('myStyle');
 
 
 
