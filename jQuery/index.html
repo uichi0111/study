@@ -6,6 +6,10 @@
 </head>
 <body>
     <p>jQeryの練習</p>
+    <p><a href="http://google.com">google</a></p>
+    <p><a href="http://yahoo.co.jp">yahoo</a></p>
+    <p><a href="http://amazon.co.jp">amazon</a></p>
+
     <ul id="main">
         <li>0</li>
         <li class="item">1</li>
@@ -34,17 +38,19 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                メソッドを使ったDOM要素の指定
-                parent(), children()
-                next(), prev()
-                siblings()・・・兄弟要素
+                属性セレクタ
+                =  等しい物
+                != 等しくないもの
+                *= 含まれるもの
+                ^= 先頭がはじまるもの
+                $= で終わるもの
             */
 
-            //$("#sub").parent().css('color','red');
-            //$("#sub").children().css('color','blue');
-            //$("#sub > li:eq(2)").next().css('color','yellow');
-            $("#sub > li:eq(2)").siblings().css('color','green');
-
+            //$('a[href="http://google.com"]').css('background','red');
+            //$('a[href!="http://google.com"]').css('background','blue');
+            //$('a[href*="amazon"]').css('background','green');
+            //$('a[href$="jp"]').css('background','yellow');
+            $('a[href^="http"]').css('background','blue');
 
 
 
