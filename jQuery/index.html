@@ -34,29 +34,16 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                フィルタ
-                    // :eq()
-                    // :gt(), :lt()
-                    // :even, :odd
-                    // :contains()
-                    // :first, :last
-
+                メソッドを使ったDOM要素の指定
+                parent(), children()
+                next(), prev()
+                siblings()・・・兄弟要素
             */
 
-
-            //リストの2番目と等しい物を指定
-            //$("#sub > li:eq(2)").css('color','green');
-            //リスト要素の3番目より大きい物を指定
-            //$("#sub > li:gt(3)").css('color','yellow');
-            //奇数要素を指定
-            $("#sub > li:odd").css('color','brown');
-            //偶数要素を指定
-            $("#sub > li:even").css('color','pink');
-            //中身に含まれているもので指定
-            $("#sub > li:contains('4')").css('color','orange');
-
-            //
-            //
+            //$("#sub").parent().css('color','red');
+            //$("#sub").children().css('color','blue');
+            //$("#sub > li:eq(2)").next().css('color','yellow');
+            $("#sub > li:eq(2)").siblings().css('color','green');
 
 
 
