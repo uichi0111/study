@@ -12,7 +12,7 @@
 </head>
 <body>
     <p>jQeryの練習</p>
-    <p><a href="http://google.com">google</a></p>
+    <p><a href="http://google.com" data-sitename="google">google</a></p>
     <p><a href="http://yahoo.co.jp">yahoo</a></p>
     <p><a href="http://amazon.co.jp">amazon</a></p>
 
@@ -44,20 +44,19 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                CSSの設定、取得
+                attr
+                引数に属性名を指定することで属性の値を取得
+                また第２引数に値を設定することで属性の値を設定
+
+                data
+                指定した要素にデータ（プロパティ名と値）を設定
+                引数にプロパティだけ指定すると、jQueryオブジェクトで指定した要素に設定されたプロパティの値を取得
             */
-
-
-            //$('p').css('color','red').css('background','blue');
-            //値を書かなかった場合は値を取得できる
-            //console.log($('p').css('color'));
-
-            //addClass removeClass
-                //
-            $('p').addClass('myStyle');
-
-
-
+            //attrメソッド
+                console.log($('a').attr('href'));
+                $('a').attr('href', 'http://google.co.jp');
+            //dataメソッド
+                console.log($('a').data('sitename'));
 
 
         });
