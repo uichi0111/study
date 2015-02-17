@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta  charset = "utf-8">
+    <title>jQueryの練習</title>
+</head>
+<body>
+    <p>jQeryの練習</p>
+    <ul>
+        <li>0</li>
+        <li class="item">1</li>
+        <li>2</li>
+        <li>
+            3
+            <ul id ="sub">
+                <li>3-0</li>
+                <li>3-1</li>
+                <li class="item">3-2</li>
+                <li class="item">3-3</li>
+                <li>3-4</li>
+            </ul>
+        </li>
+    </ul>
+
+
+
+
+
+
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script>
+        //$(document).ready(function)(){・・・ドキュメントが読み込まれたら処理を開始する
+        //下記のように省略可能
+        $(function(){
+            //セレクタ：処理対象となるDOM要素を指定する記法
+            //メソッド：処理
+            //メソッドチェーン：処理をつなげて書くこと
+            /*セレクタの記述
+                    $("")
+                    html要素　p h1 ul
+                    id　#sub
+                    class　.item
+            */
+            $('p').css('color','red')/*.hide('slow')*/;
+
+            $("#sub").css('color','red');
+            $(".item").css('color','blue');
+
+
+
+
+        });
+
+
+
+    </script>
+</body>
+</html>
