@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>jQeryの練習</p>
-    <ul>
+    <ul id="main">
         <li>0</li>
         <li class="item">1</li>
         <li>2</li>
@@ -32,27 +32,19 @@
         //$(document).ready(function)(){・・・ドキュメントが読み込まれたら処理を開始する
         //下記のように省略可能
         $(function(){
-            //セレクタ：処理対象となるDOM要素を指定する記法
-            //メソッド：処理
-            //メソッドチェーン：処理をつなげて書くこと
-            /*セレクタの記述
-                    $("")
-                    html要素　p h1 ul
-                    id　#sub
-                    class　.item
+            //セレクタ、メソッド
+            /*
+                > 直下の子要素
+                 (空白) それ以下の要素
+                , 複数の要素
+                + 隣接する要素
             */
-            $('p').css('color','red')/*.hide('slow')*/;
-
-            $("#sub").css('color','red');
-            $(".item").css('color','blue');
-
-
-
+            //$("#main > .item").css('color','red');メインの下のクラスのアイテム要素を指定
+            //$("#main .item").css('color','blue');それ以下の要素を指定するときは空白
+            //$("p , .item").css('color','red');複数の要素を指定
+            $(".item + .item").css('color','blue');//隣接する要素を指定
 
         });
-
-
-
     </script>
 </body>
 </html>
