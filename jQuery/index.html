@@ -12,6 +12,7 @@
 </head>
 <body>
     <p>jQeryの練習</p>
+    <div id="box" style="width: 100px; height: 100px; background:red;"></div>
     <ul>
         <li>0</li>
         <li>1</li>
@@ -30,16 +31,22 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                before, after  -> insertBefore, insertAfter・・・指定した要素の前、後に追加する
-                prepend, append-> prependTo, appendTo・・・ある要素の先頭or末尾に追加する
-
+                hide, show・・・消したり表示したり（数値（ミリ秒）を指定して早さを調節できる
+                fadeOut, fadeIn・・・ふわっと消したり表示したり
+                toggle・・・消えてたら表示、表示してたら消す
             */
-                var li = $('<li>').text('just added');
-                //$('ul > li:eq(1)').before(li);
-                //li.insertBefore($('ul > li:eq(1)'));
-                //$('ul').prepend(li);
-                //$('ul').append(li);
-                li.appendTo($('ul'));
+
+            //$('#box').hide(1000);
+            //$('#box').hide(slow);
+            //$('#box').fadeOut(1000);
+            //$('#box').toggle(800);
+            //第二引数に関数を持たせることで処理をした後に関数を実行する
+            $('#box').fadeOut(1000, function(){
+                alert("gone");
+            });
+
+
+
 
         });
 
