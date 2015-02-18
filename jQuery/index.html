@@ -18,7 +18,11 @@
         <li>1</li>
         <li>2</li>
     </ul>
-
+    <input typy="text" id="name">
+    <select id="menbers" name="menbers">
+        <option>ikeuchi</option>
+        <option>uichi</option>
+        <option>google</option>
 
 
 
@@ -31,31 +35,23 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                click
-                mouseover, mouseout, mousemove
-
+                focus, blur
+                change
 
             */
-            //クリックしたら関数を実行
-                $('#box').click(function() {
-                    alert("Hi!");
-                });
-
-                //メソッドチェーンで纏める
-                $('#box')
-                //マウスオーバーでバックグラウンドの色を変える
-                .mouseover(function() {
-                    $(this).css('background', 'blue');
+                $('#name')
+                //id=nameのテキストエリアにフォーカスされた時
+                .focus(function() {
+                    $(this).css('background','red');
                 })
-                //マウスアウトでバックグラウンドの色を変える
-                .mouseout(function() {
-                    $(this).css('background', 'red');
-                })
-                //マウスを動かすとX座標の値を取得する
-                .mousemove(function(e) {
-                    $(this).text(e.pageX);
+                //id=nameのテキストエリアからフォーカスが外れた時
+                .blur(function() {
+                    $(this).css('background', 'white');
                 });
-
+                //id=menbersのセレクトが変更された時
+                $('#menbers').change(function() {
+                    alert('changed!');
+                });
 
         });
 
