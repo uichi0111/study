@@ -12,19 +12,7 @@
 </head>
 <body>
     <p>jQeryの練習</p>
-    <div id="box" style="width: 100px; height: 100px; background:red;"></div>
-    <ul>
-        <li>0</li>
-        <li>1</li>
-        <li>2</li>
-    </ul>
-    <input typy="text" id="name">
-    <select id="menbers" name="menbers">
-        <option>ikeuchi</option>
-        <option>uichi</option>
-        <option>google</option>
-
-
+    <button>Add!</button>
 
 
 
@@ -35,23 +23,28 @@
         $(function(){
             //セレクタ、メソッド
             /*
-                focus, blur
-                change
-
+                on
             */
-                $('#name')
-                //id=nameのテキストエリアにフォーカスされた時
-                .focus(function() {
-                    $(this).css('background','red');
-                })
-                //id=nameのテキストエリアからフォーカスが外れた時
-                .blur(function() {
-                    $(this).css('background', 'white');
-                });
-                //id=menbersのセレクトが変更された時
-                $('#menbers').change(function() {
-                    alert('changed!');
-                });
+
+            $('button').click(function() {
+                var p = $('<p>').text('vanish!').addClass('vanish');
+                $(this).before(p);
+            });
+
+            /*ドキュメントが読み込まれた時点で存在していない要素を対象にしているので
+              以下のイベントは実行されない
+            $('.vanish').click(function() {
+                $(this).remove();
+            });
+            */
+
+            //ドキュメント読み込み時に存在しない要素を対象にするにはonメソッドを使う
+            //(親要素).on('挙動', '対象要素', '関数')
+            $('body').on('click','.vanish', function() {
+                $(this).remove();
+            });
+
+
 
         });
 
