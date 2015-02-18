@@ -12,25 +12,10 @@
 </head>
 <body>
     <p>jQeryの練習</p>
-    <p><a href="http://google.com" data-sitename="google">google</a></p>
-    <p><a href="http://yahoo.co.jp">yahoo</a></p>
-    <p><a href="http://amazon.co.jp">amazon</a></p>
-    <input tyep="text" value="hello">
-
-    <ul id="main">
+    <ul>
         <li>0</li>
-        <li class="item">1</li>
+        <li>1</li>
         <li>2</li>
-        <li>
-            3
-            <ul id ="sub">
-                <li>3-0</li>
-                <li>3-1</li>
-                <li class="item">3-2</li>
-                <li class="item">3-3</li>
-                <li>3-4</li>
-            </ul>
-        </li>
     </ul>
 
 
@@ -45,20 +30,18 @@
         $(function(){
             //セレクタ、メソッド
             /*
-              //text・・・テキストの書き換え
-              //html・・・htmlの書き換え
-              //val・・・値の書き換え
-              //remove, empty・・・指定要素の取り除き、空にする
+                before, after  -> insertBefore, insertAfter・・・指定した要素の前、後に追加する
+                prepend, append-> prependTo, appendTo・・・ある要素の先頭or末尾に追加する
+
             */
-                //$('a').text('just changed');
-                //$('a').html('<a href="">click me!</a>');
-                //console.log($('input').val());
-                //$('input').val('hello, again!');
-                //$('a').remove();
-                $('a').empty();
+                var li = $('<li>').text('just added');
+                //$('ul > li:eq(1)').before(li);
+                //li.insertBefore($('ul > li:eq(1)'));
+                //$('ul').prepend(li);
+                //$('ul').append(li);
+                li.appendTo($('ul'));
 
-
-        })
+        });
 
     </script>
 </body>
