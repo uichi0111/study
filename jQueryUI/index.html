@@ -8,7 +8,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<div id="box">box</div>
+<div id="box">box
+<div class="handle">drag here</div>
+<div class="cancel">not here</div>
+</div>
 
 
 <style>
@@ -21,10 +24,15 @@
 
 <script>
 $(function() {
-    $('#box').draggable();
-
-
-
+    $('#box').draggable({
+       // axis: 'x' X軸方向のみ
+       opacity: 0.5, //ドラッグ時の透明度
+       // handle: '.handle',//オプションを複数使うときは,(カンマ)で区切る
+       //cancel: '.cancel'
+       drag: function(event, ui) {
+        console.log(ui.position);
+       }
+    });
 });
 
 
