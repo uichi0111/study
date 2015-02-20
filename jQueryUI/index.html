@@ -8,33 +8,37 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<div class="box">box</div>
-<div class="target">target</div>
-</div>
+<ul id="selectable">
+<li id="item_1">item_1</li>
+<li id="item_2">item_2</li>
+<li id="item_3">item_3</li>
+<li id="item_4">item_4</li>
+<li id="item_5">item_5</li>
 
-
+<!--Selectableウィジェットが付与するスタイル・クラス-->
 <style>
-.box {
-    width: 50px;
-    height: 50px;
-    background: #ccc;
-    margin-bottom: 20px;
-}
-
-.target {
-    width: 100px;
-    height: 100px;
+.ui-selected {
     background: pink;
 }
 </style>
 
 <script>
 $(function() {
-    $('.box').draggable().resizable({
-        handles: 'all',
-        aspectRatio: true,
-        stop: function (event, ui) {
-            console.log(ui.size.height, ui.size.width);
+    //選択されたものを配列に格納する
+    var selected = new Array();//選ばれたidを入れておく配列の作成
+    $('#selectable').selectable({
+        selected: function(event, ui) {
+    //重複する場合は配列に追加しない
+            if (selected.indexOf(ui.selected.id) == -1) {
+                selected.push(ui.selected.id);
+            }
+            console.log(selected);
+        },
+    //解除されたものを配列から削除する
+        unselected: function(event, ui) {
+            var id = ui.unselected.id; //削除されたもののidを引っ張ってくる
+            selected.splice(selected.indexOf(id), 1);//indexOfでidの位置を探してspliceで削除する
+            console.log(selected);
         }
     });
 });
