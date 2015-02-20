@@ -26,23 +26,17 @@
     height: 100px;
     background: pink;
 }
-.hover {background: red;}
 </style>
 
 <script>
 $(function() {
-   $('.box').draggable({
-        helper: 'clone' //ドラッグした時にオリジナルは残す
-   });
-   $('.target').droppable( {
-        accept: '.box', //ドロップを受け入れる
-        tolerance: 'fit',//ドロップした時の色が変わるときの閾値の変更（デフォルトは50%）
-        hoverClass: 'hover',//ドロップすると色を変える
-        drop: function(event, ui) {
-            ui.draggable.clone().appendTo(this);
-            console.log('doropped!');
+    $('.box').draggable().resizable({
+        handles: 'all',
+        aspectRatio: true,
+        stop: function (event, ui) {
+            console.log(ui.size.height, ui.size.width);
         }
-   });
+    });
 });
 
 
