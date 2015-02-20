@@ -8,31 +8,41 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<div id="box">box
-<div class="handle">drag here</div>
-<div class="cancel">not here</div>
+<div class="box">box</div>
+<div class="target">target</div>
 </div>
 
 
 <style>
-#box {
+.box {
+    width: 50px;
+    height: 50px;
+    background: #ccc;
+    margin-bottom: 20px;
+}
+
+.target {
     width: 100px;
     height: 100px;
-    background: green;
+    background: pink;
 }
+.hover {background: red;}
 </style>
 
 <script>
 $(function() {
-    $('#box').draggable({
-       // axis: 'x' X軸方向のみ
-       opacity: 0.5, //ドラッグ時の透明度
-       // handle: '.handle',//オプションを複数使うときは,(カンマ)で区切る
-       //cancel: '.cancel'
-       drag: function(event, ui) {
-        console.log(ui.position);
-       }
-    });
+   $('.box').draggable({
+        helper: 'clone' //ドラッグした時にオリジナルは残す
+   });
+   $('.target').droppable( {
+        accept: '.box', //ドロップを受け入れる
+        tolerance: 'fit',//ドロップした時の色が変わるときの閾値の変更（デフォルトは50%）
+        hoverClass: 'hover',//ドロップすると色を変える
+        drop: function(event, ui) {
+            ui.draggable.clone().appendTo(this);
+            console.log('doropped!');
+        }
+   });
 });
 
 
