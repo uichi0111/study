@@ -8,7 +8,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<ul id="selectable">
+<ul id="sortable">
 <li id="item_1">item_1</li>
 <li id="item_2">item_2</li>
 <li id="item_3">item_3</li>
@@ -24,21 +24,15 @@
 
 <script>
 $(function() {
-    //選択されたものを配列に格納する
-    var selected = new Array();//選ばれたidを入れておく配列の作成
-    $('#selectable').selectable({
-        selected: function(event, ui) {
-    //重複する場合は配列に追加しない
-            if (selected.indexOf(ui.selected.id) == -1) {
-                selected.push(ui.selected.id);
-            }
-            console.log(selected);
-        },
-    //解除されたものを配列から削除する
-        unselected: function(event, ui) {
-            var id = ui.unselected.id; //削除されたもののidを引っ張ってくる
-            selected.splice(selected.indexOf(id), 1);//indexOfでidの位置を探してspliceで削除する
-            console.log(selected);
+    //sortable　アイテムの並び替え
+    $('#sortable').sortable({
+        cursor: 'move', //並び替え時のカーソル
+        opacity: 0.5,   //並び替え時の透明度
+        update: function(event, ui) {
+            //serializeで並び替えた時の順番をデータとして取得する
+            //並び替えた順番が文字列として帰ってくる
+            //条件･･･並び替えの要素に(アイテム名＿連番)が必要
+            console.log($(this).sortable("serialize"));
         }
     });
 });
