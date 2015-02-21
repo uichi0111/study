@@ -8,32 +8,22 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<button>open</button>
+<div id="bar" style="width:200px"></div>
 
-<div id="msg">
-こんにちは
-</div>
-
+<div id="slider" style="width:200px; margin-top:20px"></div>
 </style>
 
 <script>
 $(function() {
-    //ボタンをクリックしたらダイアログが現れる
-    $('button').click(function() {
-        $('#msg').dialog('open');
+    $('#bar').progressbar({
+        value: 33//指定した値までバーが伸びる
     });
-    $('#msg').dialog({
-        autoOpen: false, //オートオープンを無効化
-        buttons: {
-            "OK" : function() {//OKボタンを付けて押すと閉じるようにする
-                $(this).dialog('close');
-            }
-        },
-        title: "title",//ダイアログのタイトル
-        modal: true //ダイアログ表示中はフォーカスがダイアログに移行してその他が無効化される
-
-    });
-
+    $('#slider').slider({
+        slide: function(event, ui) {//slideイベントでスライドさせた値を取得
+            console.log(ui. value);
+            $('#bar').progressbar('option', 'value', ui.value);//プログレスバーと連動させる
+        }
+    })
 });
 
 
