@@ -7,27 +7,20 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
-<div>
-<button>button</button>
-</div>
 
-<div>
-<input type="checkbox" id="check"><label for="check">check!</label>
-</div>
+<input type="text" id="datepicker">
 
-<div id="set">
-<input type="radio" name="radio" id="radio1"><label for="radio1">1</label>
-<input type="radio" name="radio" id="radio2"><label for="radio2">2</label>
-<input type="radio" name="radio" id="radio3"><label for="radio3">3</label>
-</div>
 </style>
 
 <script>
 $(function() {
-    $('button').button();
-    $('#check').button();
-    $('input [type=radio]').button();
-    $('#set').buttonset();
+    $('#datepicker').datepicker({
+        dateFormat: "yy-mm-dd",//dateFormatオプションで表示形式を変更
+        numberOfMonths: 3,//一度に表示する月を設定
+        minDate: -2,//選択できる範囲を指定(二日前から)
+        maxDate: "+1m"//一ヶ月先まで
+    });
+
 });
 
 
