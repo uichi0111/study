@@ -8,22 +8,33 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<div id="bar" style="width:200px"></div>
+<div id="tabs">
 
-<div id="slider" style="width:200px; margin-top:20px"></div>
+<ul>
+    <li><a href="#menu1">menu1</a></li>
+    <li><a href="#menu2">menu2</a></li>
+    <li><a href="#menu3">menu3</a></li>
+</ul>
+
+<!--タブの中身-->
+<div id="menu1">menu 1</div>
+<div id="menu2">menu 2</div>
+<idv id="menu3">menu 3</idv>
+
+</div>
+
+
+
+
+
 </style>
 
 <script>
 $(function() {
-    $('#bar').progressbar({
-        value: 33//指定した値までバーが伸びる
+    $('#tabs').tabs({
+    //オプションで初期値を設定
+    //   selected: 1
     });
-    $('#slider').slider({
-        slide: function(event, ui) {//slideイベントでスライドさせた値を取得
-            console.log(ui. value);
-            $('#bar').progressbar('option', 'value', ui.value);//プログレスバーと連動させる
-        }
-    })
 });
 
 
