@@ -7,28 +7,27 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
-
-<div id="accordion">
-
-<!--セクションには必ず見出し要素とそれに隣接する中身要素をつくる-->
-<!--タイトルにはリンクを作る-->
-<h3><a href="">Title</a></h3>
-<div>こんにちは</div>
-<h3><a href="">Title</a></h3>
-<div>こんにちは</div>
-<h3><a href="">Title</a></h3>
-<div>こんにちは</div>
-<h3><a href="">Title</a></h3>
-<div>こんにちは</div>
-
+<div>
+<button>button</button>
 </div>
 
+<div>
+<input type="checkbox" id="check"><label for="check">check!</label>
+</div>
 
+<div id="set">
+<input type="radio" name="radio" id="radio1"><label for="radio1">1</label>
+<input type="radio" name="radio" id="radio2"><label for="radio2">2</label>
+<input type="radio" name="radio" id="radio3"><label for="radio3">3</label>
+</div>
 </style>
 
 <script>
 $(function() {
-    $('#accordion').accordion();
+    $('button').button();
+    $('#check').button();
+    $('input [type=radio]').button();
+    $('#set').buttonset();
 });
 
 
