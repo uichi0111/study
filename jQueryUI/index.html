@@ -8,33 +8,27 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<ul id="sortable">
-<li id="item_1">item_1</li>
-<li id="item_2">item_2</li>
-<li id="item_3">item_3</li>
-<li id="item_4">item_4</li>
-<li id="item_5">item_5</li>
+<div id="accordion">
 
-<!--Selectableウィジェットが付与するスタイル・クラス-->
-<style>
-.ui-selected {
-    background: pink;
-}
+<!--セクションには必ず見出し要素とそれに隣接する中身要素をつくる-->
+<!--タイトルにはリンクを作る-->
+<h3><a href="">Title</a></h3>
+<div>こんにちは</div>
+<h3><a href="">Title</a></h3>
+<div>こんにちは</div>
+<h3><a href="">Title</a></h3>
+<div>こんにちは</div>
+<h3><a href="">Title</a></h3>
+<div>こんにちは</div>
+
+</div>
+
+
 </style>
 
 <script>
 $(function() {
-    //sortable　アイテムの並び替え
-    $('#sortable').sortable({
-        cursor: 'move', //並び替え時のカーソル
-        opacity: 0.5,   //並び替え時の透明度
-        update: function(event, ui) {
-            //serializeで並び替えた時の順番をデータとして取得する
-            //並び替えた順番が文字列として帰ってくる
-            //条件･･･並び替えの要素に(アイテム名＿連番)が必要
-            console.log($(this).sortable("serialize"));
-        }
-    });
+    $('#accordion').accordion();
 });
 
 
