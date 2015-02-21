@@ -8,17 +8,30 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <body>
 
-<input type="text" id="datepicker">
+<button>open</button>
+
+<div id="msg">
+こんにちは
+</div>
 
 </style>
 
 <script>
 $(function() {
-    $('#datepicker').datepicker({
-        dateFormat: "yy-mm-dd",//dateFormatオプションで表示形式を変更
-        numberOfMonths: 3,//一度に表示する月を設定
-        minDate: -2,//選択できる範囲を指定(二日前から)
-        maxDate: "+1m"//一ヶ月先まで
+    //ボタンをクリックしたらダイアログが現れる
+    $('button').click(function() {
+        $('#msg').dialog('open');
+    });
+    $('#msg').dialog({
+        autoOpen: false, //オートオープンを無効化
+        buttons: {
+            "OK" : function() {//OKボタンを付けて押すと閉じるようにする
+                $(this).dialog('close');
+            }
+        },
+        title: "title",//ダイアログのタイトル
+        modal: true //ダイアログ表示中はフォーカスがダイアログに移行してその他が無効化される
+
     });
 
 });
