@@ -31,6 +31,10 @@ foreach ($dbh->query($sql) as $row) {
         cursor: pointer;
         color: blue;
     }
+    .done {
+        text-decoration: line-through;
+        color: grey;
+    }
     </style>
 </head>
 <body>
@@ -39,18 +43,46 @@ foreach ($dbh->query($sql) as $row) {
 
 <ul>
 <?php foreach ($tasks as $task) : ?>
-<li id="task_<?php echo h($task['id']); ?>" data-id="<?php echo h($task['id']); ?>">
-    <?php echo h($task['title']); ?>
-    <span class="deleteTask">[削除]</span>
+<li id = "task_<?php echo h($task['id']); ?>" data-id = "<?php echo h($task['id']); ?>">
+
+    <!-- チェックボタン -->
+    <input type = "checkbox" class = "checkTask" <?php if ($task['type'] == "done") {
+        echo "checked"; } ?>>
+    <!-- タイトル -->
+    <span class = "<?php echo h($task['type']); ?>"><?php echo h($task['title']); ?></span>
+    <!-- 削除リンクの作成 -->
+    <span class = "deleteTask">[削除]</span>
 </li>
 <?php endforeach; ?>
 </ul>
 
 
 <script>
+
 $(function() {
+
+    // チェックボタンが押された時の処理
+    $(document).on('click', '.checkTask', function() {
+        var id = $(this).parent().data('id');
+        var title = $(this).next();
+        $.post('_ajax_check_task.php', {
+            id: id
+        }, function(rs) {
+            if(title.hasClass('done')) {
+                title.removeClass('done');
+            } else {
+                title.addClass('done');
+            }
+        });
+    });
+
+
+
+    // 削除リンクがクリックされた時の処理
+    // li要素は動的に入れ替わるためdeleteTaskに直接clickイベントを設定せずにon命令を使う
     $(document).on('click', '.deleteTask', function() {
         if (confirm('本当に削除しますか？')) {
+            // this = deleteTaskの親要素であるliのデータ属性のidを引っ張ってくる
             var id = $(this).parent().data('id');
             $.post('_ajax_delete_task.php', {
                 id: id
