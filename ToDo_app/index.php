@@ -25,6 +25,13 @@ foreach ($dbh->query($sql) as $row) {
     <title>TODOアプリ</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+    <style>
+    .deleteTask {
+        cursor: pointer;
+        color: blue;
+    }
+    </style>
 </head>
 <body>
 
@@ -32,14 +39,28 @@ foreach ($dbh->query($sql) as $row) {
 
 <ul>
 <?php foreach ($tasks as $task) : ?>
-<li>
+<li id="task_<?php echo h($task['id']); ?>" data-id="<?php echo h($task['id']); ?>">
     <?php echo h($task['title']); ?>
+    <span class="deleteTask">[削除]</span>
 </li>
 <?php endforeach; ?>
 </ul>
 
 
-
+<script>
+$(function() {
+    $(document).on('click', '.deleteTask', function() {
+        if (confirm('本当に削除しますか？')) {
+            var id = $(this).parent().data('id');
+            $.post('_ajax_delete_task.php', {
+                id: id
+            }, function(rs) {
+                $('#task_'+id).fadeOut(800);
+            });
+        }
+    });
+});
+</script>
 
 
 </body>
