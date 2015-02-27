@@ -27,7 +27,7 @@ foreach ($dbh->query($sql) as $row) {
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 
     <style>
-    .deleteTask {
+    .deleteTask, .drag {
         cursor: pointer;
         color: blue;
     }
@@ -41,7 +41,7 @@ foreach ($dbh->query($sql) as $row) {
 
 <h1>TODOアプリ</h1>
 
-<ul>
+<ul id = "tasks">
 <?php foreach ($tasks as $task) : ?>
 <li id = "task_<?php echo h($task['id']); ?>" data-id = "<?php echo h($task['id']); ?>">
 
@@ -52,6 +52,7 @@ foreach ($dbh->query($sql) as $row) {
     <span class = "<?php echo h($task['type']); ?>"><?php echo h($task['title']); ?></span>
     <!-- 削除リンクの作成 -->
     <span class = "deleteTask">[削除]</span>
+    <span class = "drag">[drag]</span>
 </li>
 <?php endforeach; ?>
 </ul>
@@ -60,6 +61,26 @@ foreach ($dbh->query($sql) as $row) {
 <script>
 
 $(function() {
+
+    // 並び替え時の処理
+    $('#tasks').sortable( {
+        axis: 'y',
+        opacity: 0.2,
+        handle: '.drag',
+        update: function() {
+            $.post('_ajax_sort_task.php', {
+                // どの要素のidが何番目に来ているのかを渡す
+                task: $(this).sortable('serialize')
+            });
+        }
+    });
+
+
+
+
+
+
+
 
     // チェックボタンが押された時の処理
     $(document).on('click', '.checkTask', function() {
