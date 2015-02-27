@@ -15,5 +15,5 @@ function connectDb() {
 
 // データをHTMLに反映するための関数
 function h($s) {
-    return htmlspecialchars($s, ENT_QUOTES, "UTF-(");
+    return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
 }
