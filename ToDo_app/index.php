@@ -27,7 +27,7 @@ foreach ($dbh->query($sql) as $row) {
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 
     <style>
-    .deleteTask, .drag {
+    .deleteTask, .drag, .editTask {
         cursor: pointer;
         color: blue;
     }
@@ -50,8 +50,11 @@ foreach ($dbh->query($sql) as $row) {
         echo "checked"; } ?>>
     <!-- タイトル -->
     <span class = "<?php echo h($task['type']); ?>"><?php echo h($task['title']); ?></span>
+    <!-- 編集リンクの作成 -->
+    <span <?php if ($task['type'] == "notyet") { echo 'class = "editTask"'; } ?>>[編集]</span>
     <!-- 削除リンクの作成 -->
     <span class = "deleteTask">[削除]</span>
+    <!-- ドラッグの作成 -->
     <span class = "drag">[drag]</span>
 </li>
 <?php endforeach; ?>
@@ -61,6 +64,36 @@ foreach ($dbh->query($sql) as $row) {
 <script>
 
 $(function() {
+    // 編集時の処理
+    // 編集ボタンをおした時の処理
+    $(document).on('click', '.editTask', function() {
+        var id = $(this).parent().data('id');
+        var title = $(this).prev().text();
+        $('#task_'+id)
+        .empty()
+        .append($('<input type="text">').attr('value', title))
+        .append('<input type="button" value="更新" class="updateTask">');
+        $('#task_'+id+' input:eq(0)').focus();
+    });
+        // 編集フォームの入力後、更新ボタンを押した時の処理
+        $(document).on('click', '.updateTask', function() {
+            var id = $(this).parent().data('id');
+            var title = $(this).prev().val();
+            $.post('_ajax_update_task.php', {
+                id: id,
+                title: title
+            }, function(rs) {
+                var e = $(
+                    '<input type="checkbox" class="checkTask"> ' +
+                    '<span></span> ' +
+                    '<span class="editTask">[編集]</span> ' +
+                    '<span class="deleteTask">[削除]</span> ' +
+                    '<span class="drag">[drag]</span>'
+                );
+                $('#task_'+id).empty().append(e).find('span:eq(0)').text(title);
+            });
+        });
+
 
     // 並び替え時の処理
     $('#tasks').sortable( {
@@ -90,9 +123,9 @@ $(function() {
             id: id
         }, function(rs) {
             if(title.hasClass('done')) {
-                title.removeClass('done');
+                title.removeClass('done').next().addClass('editTask');
             } else {
-                title.addClass('done');
+                title.addClass('done').next().removeClass('editTask');
             }
         });
     });
